@@ -1,5 +1,6 @@
 package com.kotekaman.springmongo.users.endusers;
 
+import com.kotekaman.springmongo.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,11 @@ public class EndUsersController {
     }
 
     @PostMapping
-    public  Error addEndUsers(@RequestBody EndUser endUsers) throws IllegalAccessException {
-        Error error = endUsersServices.addEndUsers(endUsers);
-        return null;
+    public  void addEndUsers(@RequestBody EndUser endUsers) throws IllegalAccessException {
+        Boolean success = endUsersServices.addEndUsers(endUsers);
+        if (!success){
+            throw new ApiRequestException("email already used");
+        }
     }
 
 

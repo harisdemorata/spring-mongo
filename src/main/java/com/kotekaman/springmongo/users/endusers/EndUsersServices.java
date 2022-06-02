@@ -17,16 +17,16 @@ public class EndUsersServices {
         return  endUsersRepository.findAll();
     }
 
-    public Error addEndUsers(EndUser endUsers) throws IllegalAccessException {
+    public boolean addEndUsers(EndUser endUsers)  {
         String email = endUsers.getEmail();
         Boolean isEmpty = endUsersRepository.findEndUsersRepositoryByEmail(email)
                 .isEmpty();
 
         if (isEmpty){
             endUsersRepository.insert(endUsers);
-            return null;
+            return true;
         }else {
-            return new IllegalAccessError("User Founded");
+            return false;
         }
     }
 

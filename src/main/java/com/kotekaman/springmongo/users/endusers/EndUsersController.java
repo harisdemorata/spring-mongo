@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,11 +21,8 @@ public class EndUsersController {
     }
 
     @PostMapping
-    public  void addEndUsers(@RequestBody EndUser endUsers) throws IllegalAccessException {
-        Boolean success = endUsersServices.addEndUsers(endUsers);
-        if (!success){
-            throw new ApiRequestException("email already used");
-        }
+    public  void addEndUsers(@Valid  @RequestBody EndUser endUsers)  {
+        endUsersServices.addEndUsers(endUsers);
     }
 
 

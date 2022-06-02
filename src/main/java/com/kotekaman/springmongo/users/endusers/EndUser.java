@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,6 +17,8 @@ public class EndUser {
     private String firstName;
     private String lastName;
     private Address address;
+    @Email
+    @NotBlank
     private String email;
 
     private LocalDateTime createdAt;

@@ -1,6 +1,7 @@
 package com.kotekaman.springmongo.users.endusers;
 
 
+import com.kotekaman.springmongo.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +18,15 @@ public class EndUsersServices {
         return  endUsersRepository.findAll();
     }
 
-    public boolean addEndUsers(EndUser endUsers)  {
+    public void addEndUsers(EndUser endUsers)  {
         String email = endUsers.getEmail();
         Boolean isEmpty = endUsersRepository.findEndUsersRepositoryByEmail(email)
                 .isEmpty();
 
-        if (isEmpty){
-            endUsersRepository.insert(endUsers);
-            return true;
-        }else {
-            return false;
+        if (!isEmpty){
+            throw new ApiRequestException("email already used");
         }
+        endUsersRepository.save(endUsers);
     }
 
 }

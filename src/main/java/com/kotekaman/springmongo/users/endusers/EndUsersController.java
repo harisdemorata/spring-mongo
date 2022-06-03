@@ -25,6 +25,20 @@ public class EndUsersController {
         endUsersServices.addEndUsers(endUsers);
     }
 
+    @PutMapping
+    public  void updateEndUsers(@Valid @RequestBody EndUser endUser){
+        endUsersServices.updateEndUsers(endUser);
+    }
+
+    @GetMapping("/{id}")
+    public EndUser getEndUsersById(@PathVariable("id") String endUsersId){
+        return endUsersServices.getEndUsersById(endUsersId);
+    }
+
+    @DeleteMapping("/{id}")
+    public  void deleteEndUserById(@PathVariable("id") String endUserId){
+        endUsersServices.deleteEndUserById(endUserId);
+    }
 
 
 }

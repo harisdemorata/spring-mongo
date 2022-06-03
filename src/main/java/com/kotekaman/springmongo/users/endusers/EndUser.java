@@ -14,7 +14,9 @@ public class EndUser {
 
     @Id
     private  String id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
     private Address address;
     @Email

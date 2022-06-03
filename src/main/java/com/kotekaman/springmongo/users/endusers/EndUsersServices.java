@@ -29,4 +29,15 @@ public class EndUsersServices {
         endUsersRepository.save(endUsers);
     }
 
+    public void updateEndUsers(EndUser endUser){
+        endUsersRepository.save(endUser);
+    }
+
+    public EndUser getEndUsersById(String id){
+        return endUsersRepository.findById(id).get();
+    }
+
+    public void deleteEndUserById(String id){
+        endUsersRepository.deleteById(id);
+    }
 }
